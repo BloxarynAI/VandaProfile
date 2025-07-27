@@ -4,13 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vanda Sigma - Official</title>
+
+  <!-- Font Awesome CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+
   <style>
+    /* ===== BASE ===== */
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
       background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
-        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0S-XUcFmZwt6kB4G3pHIgHWSi-Sbligp_KYFMBzqtzxLBEz5Vgwwsa025&s=10');
+                  url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0S-XUcFmZwt6kB4G3pHIgHWSi-Sbligp_KYFMBzqtzxLBEz5Vgwwsa025&s=10");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -61,13 +69,17 @@
       cursor: pointer;
     }
 
-    .btn i {
-      margin-right: 10px;
-    }
-
     .btn:hover {
       background: rgba(255,255,255,.3);
       transform: scale(1.05);
+    }
+
+    .btn i {
+      /* semua ikon pakai ukuran & jarak sama */
+      width: 20px;
+      margin-right: 10px;
+      text-align: center;
+      font-size: 1.15rem;
     }
 
     .logo {
@@ -79,31 +91,90 @@
       margin-bottom: 20px;
     }
 
+    /* ===== MUSIC BUTTON ===== */
+    .btn-music {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      border: 2px solid white;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: .3s;
+      z-index: 999;
+    }
+
+    .btn-music:hover {
+      background: rgba(255,255,255,.4);
+      transform: scale(1.1);
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       .subtitle { font-size: 1rem; }
       .btn { font-size: 1rem; height: 48px; }
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
   <div class="container">
-    <img src="vanda.jpg" class="logo" alt="Foto profil Vanda Sigma"
-     onerror="this.src='https://via.placeholder.com/150'; this.alt='Gambar tidak ditemukan';">
+    <img
+      src="vanda.jpg"
+      class="logo"
+      alt="Foto profil Vanda Sigma"
+      onerror="this.src='https://via.placeholder.com/150'; this.alt='Gambar tidak ditemukan';"
+    />
 
     <h1>Vanda Sigma</h1>
     <div class="subtitle">Welcome!!</div>
 
+    <!-- Link to socials (ikon sudah dirapikan) -->
     <a href="https://discord.gg/yEZPXa6n" class="btn" target="_blank">
       <i class="fab fa-discord"></i> Discord
     </a>
-    <a href="https://www.tiktok.com/@pacargranger?_t=ZS-8yMtTUmU8v9&_r=1" class="btn" target="_blank">
+    <a href="https://www.tiktok.com/@pacargranger" class="btn" target="_blank">
       <i class="fab fa-tiktok"></i> TikTok
     </a>
-    <a href="https://www.instagram.com/v3003__?igsh=dW5zeW13anhoeDU2" class="btn" target="_blank">
+    <a href="https://www.instagram.com/v3003__" class="btn" target="_blank">
       <i class="fab fa-instagram"></i> Instagram
     </a>
   </div>
+
+  <!-- ===== AUDIO & BUTTON ===== -->
+  <audio id="calmaPlayer" preload="none">
+    <source src="calma.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung audio.
+  </audio>
+
+  <button
+    id="btnCalma"
+    class="btn-music"
+    title="Calma – Vanda Sigma"
+    aria-label="Putar / Jeda lagu Calma"
+  >
+    <i id="iconCalma" class="fas fa-play"></i>
+  </button>
+
+  <script>
+    const audioCalma = document.getElementById('calmaPlayer');
+    const btnCalma   = document.getElementById('btnCalma');
+    const iconCalma  = document.getElementById('iconCalma');
+
+    btnCalma.addEventListener('click', () => {
+      if (audioCalma.paused) {
+        audioCalma.play();
+        iconCalma.className = 'fas fa-pause';
+      } else {
+        audioCalma.pause();
+        iconCalma.className = 'fas fa-play';
+      }
+    });
+  </script>
 </body>
 </html>

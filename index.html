@@ -12,7 +12,6 @@
   />
 
   <style>
-    /* ===== BASE ===== */
     html, body {
       margin: 0;
       padding: 0;
@@ -137,8 +136,10 @@
 </head>
 
 <body>
+  <!-- Partikel efek -->
   <canvas id="particles"></canvas>
 
+  <!-- Konten utama -->
   <div class="container">
     <img
       src="vanda.jpg"
@@ -161,6 +162,7 @@
     </a>
   </div>
 
+  <!-- Musik -->
   <audio id="calmaPlayer" preload="none">
     <source src="calma.mp3" type="audio/mpeg">
     Browser Anda tidak mendukung audio.
@@ -175,8 +177,9 @@
     <i id="iconCalma" class="fas fa-play"></i>
   </button>
 
+  <!-- Script Musik dan Partikel -->
   <script>
-    // MUSIC
+    // Musik
     const audioCalma = document.getElementById('calmaPlayer');
     const btnCalma   = document.getElementById('btnCalma');
     const iconCalma  = document.getElementById('iconCalma');
@@ -191,7 +194,7 @@
       }
     });
 
-    // PARTICLE FALLING EFFECT
+    // Partikel kuning bersinar
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
 
@@ -204,14 +207,16 @@
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: Math.random() * 3 + 1,
+        r: Math.random() * 2 + 1,
         d: Math.random() * 1
       });
     }
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = "rgba(255,255,255,0.8)";
+      ctx.fillStyle = "rgba(255,255,100,0.7)";
+      ctx.shadowColor = "rgba(255,255,100,0.9)";
+      ctx.shadowBlur = 10;
       ctx.beginPath();
       for (let i = 0; i < particles.length; i++) {
         let p = particles[i];
@@ -234,6 +239,7 @@
     }
 
     setInterval(draw, 33);
+
     window.addEventListener("resize", () => {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
